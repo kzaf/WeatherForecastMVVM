@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastmvvc
+package com.kzaf.weatherforecastMVVM
 
 import org.junit.Test
 

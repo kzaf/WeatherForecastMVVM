@@ -1,7 +1,7 @@
-package com.kzaf.weatherforecastmvvc.data
+package com.kzaf.weatherforecastMVVM.data
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.kzaf.weatherforecastmvvc.data.response.CurrentWeatherResponse
+import com.kzaf.weatherforecastMVVM.data.response.CurrentWeatherResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

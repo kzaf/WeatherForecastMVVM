@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastmvvc.ui.weather.current
+package com.kzaf.weatherforecastMVVM.ui.weather.current
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.kzaf.weatherforecastmvvc.R
+import com.kzaf.weatherforecastMVVM.R
 
 class CurrentWeatherFragment : Fragment() {
 

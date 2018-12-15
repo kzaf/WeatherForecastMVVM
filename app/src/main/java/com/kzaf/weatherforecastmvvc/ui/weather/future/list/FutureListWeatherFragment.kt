@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastmvvc.ui.weather.future.list
+package com.kzaf.weatherforecastMVVM.ui.weather.future.list
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import com.kzaf.weatherforecastmvvc.R
+import com.kzaf.weatherforecastMVVM.R
 
 class FutureListWeatherFragment : Fragment() {
 

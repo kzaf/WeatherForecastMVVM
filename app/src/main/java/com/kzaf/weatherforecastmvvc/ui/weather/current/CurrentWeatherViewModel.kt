@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastmvvc.ui.weather.current
+package com.kzaf.weatherforecastMVVM.ui.weather.current
 
 import androidx.lifecycle.ViewModel;
 

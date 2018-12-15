@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastmvvc.ui.settings
+package com.kzaf.weatherforecastMVVM.ui.settings
 
 import androidx.fragment.app.Fragment
 

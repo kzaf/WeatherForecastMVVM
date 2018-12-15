@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastmvvc.ui
+package com.kzaf.weatherforecastMVVM.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.kzaf.weatherforecastmvvc.R
+import com.kzaf.weatherforecastMVVM.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
