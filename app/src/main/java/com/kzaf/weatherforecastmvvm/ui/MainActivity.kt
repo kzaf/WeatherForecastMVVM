@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastMVVM.ui
+package com.kzaf.weatherforecastmvvm.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +12,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
+
+/*
+    fun onomaSynarthshs (x: Int) : Int
+    {
+        val e = x + 1;
+        return e
+    }
+
+    var a = onomaSynarthshs(1)
+
+    var k : (Int) -> Int =  { x -> x + 1 }
+    val t = k(1)
+*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

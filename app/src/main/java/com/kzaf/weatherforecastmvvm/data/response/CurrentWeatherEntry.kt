@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastMVVM.data.response
+package com.kzaf.weatherforecastmvvm.data.response
 
 import com.google.gson.annotations.SerializedName
 
