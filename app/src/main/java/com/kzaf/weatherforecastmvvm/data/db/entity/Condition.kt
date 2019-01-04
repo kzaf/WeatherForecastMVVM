@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastmvvm.data.response
+package com.kzaf.weatherforecastmvvm.data.db.entity
 
 data class Condition(
     val text: String,
