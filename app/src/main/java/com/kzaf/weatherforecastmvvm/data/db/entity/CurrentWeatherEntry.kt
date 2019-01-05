@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 
  const val CURRENT_WEATHER_ID = 0
 
-@Entity(tableName = "current_weather ") // Entities are basically tables in SQLight db
+@Entity(tableName = "current_weather") // Entities are basically tables in SQLight db
 data class CurrentWeatherEntry(
     @SerializedName("temp_c")
     val tempC: Double,
