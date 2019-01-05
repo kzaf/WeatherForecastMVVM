@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastmvvm.data
+package com.kzaf.weatherforecastmvvm.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.kzaf.weatherforecastmvvm.data.network.response.CurrentWeatherResponse
@@ -24,7 +24,7 @@ interface ApixuWeatherApiService {
 
     // companion is like static methods
     companion object {
-        operator fun invoke() : ApixuWeatherApiService {
+        operator fun invoke(connectivityInterceptor: ConnectivityInterceptor) : ApixuWeatherApiService {
             // requestInterceptor is like anonymous class with only one function thus we can use lambda function
             val requestInterceptor = Interceptor { chain ->
                 val url = chain.request()
@@ -43,6 +43,7 @@ interface ApixuWeatherApiService {
 
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
+                .addInterceptor(connectivityInterceptor)
                 .build()
 
             return Retrofit.Builder()
