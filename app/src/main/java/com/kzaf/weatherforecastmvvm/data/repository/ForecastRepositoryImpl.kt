@@ -1,6 +1,5 @@
 package com.kzaf.weatherforecastmvvm.data.repository
 
-import android.os.Build
 import androidx.lifecycle.LiveData
 import com.kzaf.weatherforecastmvvm.data.db.CurrentWeatherDao
 import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.UnitSpecificCurrentWeatherEntry
@@ -10,8 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
-import java.time.ZonedDateTime
+import org.threeten.bp.LocalDateTime
 import java.util.*
 
 class ForecastRepositoryImpl(
@@ -40,23 +38,20 @@ class ForecastRepositoryImpl(
     }
 
     private suspend fun initWeatherData(){
-        if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))
+        if (isFetchCurrentNeeded(LocalDateTime.now().minusHours(1)))
             fetchCurrentWeather()
     }
 
     private suspend fun fetchCurrentWeather(){
         weatherNetworkDataSource.fetchCurrentWeather(
-            "Larissa",
+            "Hamburg",
             Locale.getDefault().language
         )
     }
 
-    private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
-        val thirtyMinutesAgo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ZonedDateTime.now().minusMinutes(30)
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
+    private fun isFetchCurrentNeeded(lastFetchTime: LocalDateTime): Boolean {
+        val thirtyMinutesAgo = LocalDateTime.now().minusMinutes(30) // ZonedDateTime.now().minusMinutes(30)
+
         return lastFetchTime.isBefore(thirtyMinutesAgo)
     }
 }

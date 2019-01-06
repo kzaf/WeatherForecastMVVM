@@ -4,6 +4,8 @@ import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.kzaf.weatherforecastmvvm.data.db.ForecastDatabase
 import com.kzaf.weatherforecastmvvm.data.network.*
+import com.kzaf.weatherforecastmvvm.data.provider.UnitProvider
+import com.kzaf.weatherforecastmvvm.data.provider.UnitProviderImpl
 import com.kzaf.weatherforecastmvvm.data.repository.ForecastRepository
 import com.kzaf.weatherforecastmvvm.data.repository.ForecastRepositoryImpl
 import com.kzaf.weatherforecastmvvm.ui.weather.current.CurrentWeatherViewModelFactory
@@ -25,11 +27,12 @@ class ForecastApplication : Application(), KodeinAware {
         bind() from singleton { ApixuWeatherApiService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton{ WeatherNetworkDataSourceImpl(instance()) }
         bind<ForecastRepository>() with singleton{ ForecastRepositoryImpl(instance(), instance()) }
-        bind() from provider { CurrentWeatherViewModelFactory(instance()) }
+        bind<UnitProvider>() with singleton{ UnitProviderImpl(instance()) }
+        bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
     }
 
     override fun onCreate() {
         super.onCreate()
-        AndroidThreeTen.init(this)
+        AndroidThreeTen.init(this) // ThreeTen project provides a date and time API for Java
     }
 }

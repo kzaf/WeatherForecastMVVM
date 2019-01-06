@@ -1,25 +1,16 @@
-package com.kzaf.weatherforecastMVVM.ui.weather.current
+package com.kzaf.weatherforecastmvvm.ui.weather.current
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProviders
 import com.kzaf.weatherforecastMVVM.R
-import com.kzaf.weatherforecastmvvm.data.network.ApixuWeatherApiService
-import com.kzaf.weatherforecastmvvm.data.network.ConnectivityInterceptor
-import com.kzaf.weatherforecastmvvm.data.network.ConnectivityInterceptorImpl
-import com.kzaf.weatherforecastmvvm.data.network.WeatherNetworkDataSourceImpl
 import com.kzaf.weatherforecastmvvm.internal.glide.GlideApp
 import com.kzaf.weatherforecastmvvm.ui.base.ScopedFragment
-import com.kzaf.weatherforecastmvvm.ui.weather.current.CurrentWeatherViewModelFactory
 import kotlinx.android.synthetic.main.current_weather_fragment.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
