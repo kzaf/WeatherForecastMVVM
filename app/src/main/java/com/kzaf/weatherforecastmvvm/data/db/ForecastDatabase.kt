@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.kzaf.weatherforecastmvvm.data.db.entity.CurrentWeatherEntry
 import com.kzaf.weatherforecastmvvm.data.db.entity.WeatherLocation
 
@@ -11,8 +12,11 @@ import com.kzaf.weatherforecastmvvm.data.db.entity.WeatherLocation
     entities = [CurrentWeatherEntry::class, WeatherLocation::class ],
      version = 1
 )
+
+@TypeConverters(LocalDateConverter::class)
 abstract class ForecastDatabase : RoomDatabase() {
     abstract fun currentWeatherDao(): CurrentWeatherDao
+    abstract fun futureWeatherDao(): FutureWeatherDao
     abstract fun weatherLocationDao(): WeatherLocationDao
 
     companion object {

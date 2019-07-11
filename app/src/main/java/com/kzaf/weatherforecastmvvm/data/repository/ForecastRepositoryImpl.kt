@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.kzaf.weatherforecastmvvm.data.db.CurrentWeatherDao
 import com.kzaf.weatherforecastmvvm.data.db.WeatherLocationDao
 import com.kzaf.weatherforecastmvvm.data.db.entity.WeatherLocation
-import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.UnitSpecificCurrentWeatherEntry
+import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.current.UnitSpecificCurrentWeatherEntry
 import com.kzaf.weatherforecastmvvm.data.network.WeatherNetworkDataSource
 import com.kzaf.weatherforecastmvvm.data.network.response.CurrentWeatherResponse
 import com.kzaf.weatherforecastmvvm.data.provider.LocationProvider

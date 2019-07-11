@@ -1,4 +1,4 @@
-package com.kzaf.weatherforecastmvvm.data.db.unitlocalized
+package com.kzaf.weatherforecastmvvm.data.db.unitlocalized.current
 
 interface UnitSpecificCurrentWeatherEntry {
     val temperature: Double

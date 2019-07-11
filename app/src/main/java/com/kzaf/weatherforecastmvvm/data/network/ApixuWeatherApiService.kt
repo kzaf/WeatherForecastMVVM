@@ -22,6 +22,13 @@ interface ApixuWeatherApiService {
 
     ) : Deferred<CurrentWeatherResponse> // Deferred is a part of kotlin co-routines and we can await
 
+    @GET("forecast.json") //http://api.apixu.com/v1/forecast.json?key=fb8170162e234f0e984165343181512&q=Los%20Angeles&days=1
+    fun getFutureWeather(
+        @Query("q") location: String,
+        @Query("days") days: Int,
+        @Query("lang") languageCode: String = "en"
+    )
+
     // companion is like static methods
     companion object {
         operator fun invoke(connectivityInterceptor: ConnectivityInterceptor) : ApixuWeatherApiService {

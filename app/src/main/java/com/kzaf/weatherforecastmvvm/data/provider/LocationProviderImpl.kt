@@ -10,7 +10,6 @@ import com.kzaf.weatherforecastmvvm.data.db.entity.WeatherLocation
 import com.kzaf.weatherforecastmvvm.internal.LocationPremissionNotGrantedException
 import com.kzaf.weatherforecastmvvm.internal.asDeferred
 import kotlinx.coroutines.Deferred
-import java.util.jar.Manifest
 
 const val USE_DEVICE_LOCATION = "USE_DEVICE_LOCATION"
 const val CUSTOM_LOCATION = "CUSTOM_LOCATION"
