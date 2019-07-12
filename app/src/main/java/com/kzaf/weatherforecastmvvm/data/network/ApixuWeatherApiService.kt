@@ -2,6 +2,7 @@ package com.kzaf.weatherforecastmvvm.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.kzaf.weatherforecastmvvm.data.network.response.CurrentWeatherResponse
+import com.kzaf.weatherforecastmvvm.data.network.response.FutureWeatherResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -27,7 +28,7 @@ interface ApixuWeatherApiService {
         @Query("q") location: String,
         @Query("days") days: Int,
         @Query("lang") languageCode: String = "en"
-    )
+    ) : Deferred<FutureWeatherResponse> // Deferred is a part of kotlin co-routines and we can await
 
     // companion is like static methods
     companion object {
