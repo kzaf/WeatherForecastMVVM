@@ -5,7 +5,7 @@ import com.kzaf.weatherforecastmvvm.data.db.entity.WeatherLocation
 
 
 data class FutureWeatherResponse(
-    @SerializedName("forecastday")
-    val forecast: ForecastDaysContainer,
+    @SerializedName("forecast")
+    val futureWeatherEntries: ForecastDaysContainer,
     val location: WeatherLocation
 )

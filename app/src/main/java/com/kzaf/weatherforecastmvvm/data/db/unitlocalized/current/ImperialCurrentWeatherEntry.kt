@@ -2,7 +2,7 @@ package com.kzaf.weatherforecastmvvm.data.db.unitlocalized.current
 
 import androidx.room.ColumnInfo
 
-data class ImperialCurrentWeatherEntry (
+data class ImperialCurrentWeatherEntry(
     @ColumnInfo(name = "tempF")
     override val temperature: Double,
     @ColumnInfo(name = "condition_text")
