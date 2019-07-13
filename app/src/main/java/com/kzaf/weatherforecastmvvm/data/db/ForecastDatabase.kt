@@ -10,7 +10,7 @@ import com.kzaf.weatherforecastmvvm.data.db.entity.WeatherLocation
 
 @Database(
     entities = [CurrentWeatherEntry::class, WeatherLocation::class ],
-     version = 1
+     version = 2
 )
 
 @TypeConverters(LocalDateConverter::class)
