@@ -1,9 +1,7 @@
 package com.kzaf.weatherforecastmvvm.ui.weather.current
 
-import androidx.lifecycle.ViewModel;
 import com.kzaf.weatherforecastmvvm.data.provider.UnitProvider
 import com.kzaf.weatherforecastmvvm.data.repository.ForecastRepository
-import com.kzaf.weatherforecastmvvm.internal.UnitSystem
 import com.kzaf.weatherforecastmvvm.internal.lazyDeferred
 import com.kzaf.weatherforecastmvvm.ui.base.WeatherViewModel
 
@@ -12,8 +10,7 @@ class CurrentWeatherViewModel(
     unitProvider: UnitProvider
 ) : WeatherViewModel(forecastRepository, unitProvider) {
 
-    val weather by lazyDeferred  {
+    val weather by lazyDeferred {
         forecastRepository.getCurrentWeather(super.isMetricUnit)
     }
-
 }

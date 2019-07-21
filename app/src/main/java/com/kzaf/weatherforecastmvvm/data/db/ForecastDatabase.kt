@@ -6,13 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.kzaf.weatherforecastmvvm.data.db.entity.CurrentWeatherEntry
+import com.kzaf.weatherforecastmvvm.data.db.entity.FutureWeatherEntry
 import com.kzaf.weatherforecastmvvm.data.db.entity.WeatherLocation
 
 @Database(
-    entities = [CurrentWeatherEntry::class, WeatherLocation::class ],
-     version = 2
+    entities = [CurrentWeatherEntry::class, FutureWeatherEntry::class, WeatherLocation::class],
+    version = 1
 )
-
 @TypeConverters(LocalDateConverter::class)
 abstract class ForecastDatabase : RoomDatabase() {
     abstract fun currentWeatherDao(): CurrentWeatherDao
@@ -28,9 +28,8 @@ abstract class ForecastDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context) =
-                Room.databaseBuilder(context.applicationContext,
-                    ForecastDatabase::class.java,
-                    "forecast.db")
-                    .build()
+            Room.databaseBuilder(context.applicationContext,
+                ForecastDatabase::class.java, "futureWeatherEntries.db")
+                .build()
     }
 }

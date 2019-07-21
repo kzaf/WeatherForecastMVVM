@@ -17,6 +17,7 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
 class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
+
     override val kodein by closestKodein()
     private val viewModelFactory: CurrentWeatherViewModelFactory by instance()
 
@@ -31,6 +32,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CurrentWeatherViewModel::class.java)
 
@@ -39,6 +41,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
     private fun bindUI() = launch {
         val currentWeather = viewModel.weather.await()
+
         val weatherLocation = viewModel.weatherLocation.await()
 
         weatherLocation.observe(this@CurrentWeatherFragment, Observer { location ->
@@ -47,10 +50,9 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
         })
 
         currentWeather.observe(this@CurrentWeatherFragment, Observer {
-            if(it == null) return@Observer
+            if (it == null) return@Observer
 
             group_loading.visibility = View.GONE
-            updateLocation("Hamburg")
             updateDateToToday()
             updateTemperatures(it.temperature, it.feelsLikeTemperature)
             updateCondition(it.conditionText)
@@ -76,8 +78,8 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
         (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
     }
 
-    private fun updateTemperatures(temperature: Double, feelsLike: Double){
-        val unitAbbreviation = chooseLocalizedUnitAbbreviation("°C","°F")
+    private fun updateTemperatures(temperature: Double, feelsLike: Double) {
+        val unitAbbreviation = chooseLocalizedUnitAbbreviation("°C", "°F")
         textView_temperature.text = "$temperature$unitAbbreviation"
         textView_feels_like_temperature.text = "Feels like $feelsLike$unitAbbreviation"
     }
@@ -88,7 +90,7 @@ class CurrentWeatherFragment : ScopedFragment(), KodeinAware {
 
     private fun updatePrecipitation(precipitationVolume: Double) {
         val unitAbbreviation = chooseLocalizedUnitAbbreviation("mm", "in")
-        textView_precipitation.text = "Precipitation: $precipitationVolume $unitAbbreviation"
+        textView_precipitation.text = "Preciptiation: $precipitationVolume $unitAbbreviation"
     }
 
     private fun updateWind(windDirection: String, windSpeed: Double) {

@@ -6,7 +6,8 @@ import com.kzaf.weatherforecastmvvm.data.db.FutureWeatherDao
 import com.kzaf.weatherforecastmvvm.data.db.WeatherLocationDao
 import com.kzaf.weatherforecastmvvm.data.db.entity.WeatherLocation
 import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.current.UnitSpecificCurrentWeatherEntry
-import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.future.UnitSpecificSimpleFutureWeatherEntry
+import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.future.detail.UnitSpecificDetailFutureWeatherEntry
+import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.future.list.UnitSpecificSimpleFutureWeatherEntry
 import com.kzaf.weatherforecastmvvm.data.network.FORECAST_DAYS_COUNT
 import com.kzaf.weatherforecastmvvm.data.network.WeatherNetworkDataSource
 import com.kzaf.weatherforecastmvvm.data.network.response.CurrentWeatherResponse
@@ -22,8 +23,8 @@ import java.util.*
 
 class ForecastRepositoryImpl(
     private val currentWeatherDao: CurrentWeatherDao,
-    private val weatherLocationDao: WeatherLocationDao,
     private val futureWeatherDao: FutureWeatherDao,
+    private val weatherLocationDao: WeatherLocationDao,
     private val weatherNetworkDataSource: WeatherNetworkDataSource,
     private val locationProvider: LocationProvider
 ) : ForecastRepository {
@@ -40,7 +41,7 @@ class ForecastRepositoryImpl(
     }
 
     override suspend fun getCurrentWeather(metric: Boolean): LiveData<out UnitSpecificCurrentWeatherEntry> {
-        return withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             initWeatherData()
             return@withContext if (metric) currentWeatherDao.getWeatherMetric()
             else currentWeatherDao.getWeatherImperial()
@@ -55,6 +56,17 @@ class ForecastRepositoryImpl(
             initWeatherData()
             return@withContext if (metric) futureWeatherDao.getSimpleWeatherForecastsMetric(startDate)
             else futureWeatherDao.getSimpleWeatherForecastsImperial(startDate)
+        }
+    }
+
+    override suspend fun getFutureWeatherByDate(
+        date: LocalDate,
+        metric: Boolean
+    ): LiveData<out UnitSpecificDetailFutureWeatherEntry> {
+        return withContext(Dispatchers.IO) {
+            initWeatherData()
+            return@withContext if (metric) futureWeatherDao.getDetailedWeatherByDateMetric(date)
+            else futureWeatherDao.getDetailedWeatherByDateImperial(date)
         }
     }
 
@@ -101,11 +113,9 @@ class ForecastRepositoryImpl(
 
         if (isFetchFutureNeeded())
             fetchFutureWeather()
-
-
     }
 
-    private suspend fun fetchCurrentWeather(){
+    private suspend fun fetchCurrentWeather() {
         weatherNetworkDataSource.fetchCurrentWeather(
             locationProvider.getPreferredLocationString(),
             Locale.getDefault().language
@@ -120,11 +130,9 @@ class ForecastRepositoryImpl(
     }
 
     private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
-        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30) // ZonedDateTime.now().minusMinutes(30)
-
+        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
         return lastFetchTime.isBefore(thirtyMinutesAgo)
     }
-
 
     private fun isFetchFutureNeeded(): Boolean {
         val today = LocalDate.now()

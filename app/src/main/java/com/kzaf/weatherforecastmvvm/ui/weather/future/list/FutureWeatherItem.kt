@@ -1,8 +1,8 @@
 package com.kzaf.weatherforecastmvvm.ui.weather.future.list
 
 import com.kzaf.weatherforecastMVVM.R
-import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.future.MetricSimpleFutureWeatherEntry
-import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.future.UnitSpecificSimpleFutureWeatherEntry
+import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.future.list.MetricSimpleFutureWeatherEntry
+import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.future.list.UnitSpecificSimpleFutureWeatherEntry
 import com.kzaf.weatherforecastmvvm.internal.glide.GlideApp
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder

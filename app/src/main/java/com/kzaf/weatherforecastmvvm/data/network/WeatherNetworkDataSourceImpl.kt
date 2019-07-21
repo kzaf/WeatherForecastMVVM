@@ -33,7 +33,10 @@ class WeatherNetworkDataSourceImpl(
     override val downloadedFutureWeather: LiveData<FutureWeatherResponse>
         get() = _downloadedFutureWeather
 
-    override suspend fun fetchFutureWeather(location: String, languageCode: String) {
+    override suspend fun fetchFutureWeather(
+        location: String,
+        languageCode: String
+    ) {
         try {
             val fetchedFutureWeather = apixuWeatherApiService
                 .getFutureWeather(location, FORECAST_DAYS_COUNT, languageCode)

@@ -15,4 +15,3 @@ class FutureListWeatherViewModel(
         forecastRepository.getFutureWeatherList(LocalDate.now(), super.isMetricUnit)
     }
 }
-

@@ -34,9 +34,8 @@ data class CurrentWeatherEntry(
     @SerializedName("vis_km")
     val visKm: Double,
     @SerializedName("vis_miles")
-    val visMiles: Double,
-    val uv: Double
+    val visMiles: Double
 ) {
-    @PrimaryKey(autoGenerate = false) // The primary key
-    var id: Int = CURRENT_WEATHER_ID // We use a constant because there will be only one record every time (only one current weather)
+    @PrimaryKey(autoGenerate = false)
+    var id: Int = CURRENT_WEATHER_ID
 }

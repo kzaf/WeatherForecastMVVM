@@ -21,7 +21,7 @@ data class WeatherLocation(
     val tzId: String,
     @SerializedName("localtime_epoch")
     val localtimeEpoch: Long
-){
+) {
     @PrimaryKey(autoGenerate = false)
     var id: Int = WEATHER_LOCATION_ID
 
@@ -29,10 +29,6 @@ data class WeatherLocation(
         get() {
             val instant = Instant.ofEpochSecond(localtimeEpoch)
             val zoneId = ZoneId.of(tzId)
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                ZonedDateTime.ofInstant(instant, zoneId)
-            } else {
-                TODO("VERSION.SDK_INT < O")
-            }
+            return ZonedDateTime.ofInstant(instant, zoneId)
         }
 }

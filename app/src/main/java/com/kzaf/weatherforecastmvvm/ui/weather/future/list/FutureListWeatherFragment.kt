@@ -2,7 +2,6 @@ package com.kzaf.weatherforecastMVVM.ui.weather.future.list
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.kzaf.weatherforecastMVVM.R
 import com.kzaf.weatherforecastmvvm.data.db.LocalDateConverter
-import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.future.UnitSpecificSimpleFutureWeatherEntry
+import com.kzaf.weatherforecastmvvm.data.db.unitlocalized.future.list.UnitSpecificSimpleFutureWeatherEntry
 import com.kzaf.weatherforecastmvvm.ui.base.ScopedFragment
 import com.kzaf.weatherforecastmvvm.ui.weather.future.list.FutureListWeatherViewModelFactory
 import com.kzaf.weatherforecastmvvm.ui.weather.future.list.FutureWeatherItem
@@ -23,7 +22,6 @@ import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.future_list_weather_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
@@ -45,7 +43,8 @@ class FutureListWeatherFragment : ScopedFragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(FutureListWeatherViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(FutureListWeatherViewModel::class.java)
         bindUI()
     }
 
@@ -64,6 +63,7 @@ class FutureListWeatherFragment : ScopedFragment(), KodeinAware {
             group_loading.visibility = View.GONE
 
             updateDateToNextWeek()
+            initRecyclerView(weatherEntries.toFutureWeatherItems())
         })
     }
 
@@ -93,9 +93,16 @@ class FutureListWeatherFragment : ScopedFragment(), KodeinAware {
 
         groupAdapter.setOnItemClickListener { item, view ->
             (item as? FutureWeatherItem)?.let {
-                Toast.makeText(this@FutureListWeatherFragment.context, "Clicked", Toast.LENGTH_SHORT).show()
+                showWeatherDetail(it.weatherEntry.date, view)
             }
         }
     }
+
+    private fun showWeatherDetail(date: LocalDate, view: View) {
+        val dateString = LocalDateConverter.dateToString(date)!!
+        val actionDetail = FutureListWeatherFragmentDirections.actionDetail(dateString)
+        Navigation.findNavController(view).navigate(actionDetail)
+    }
+
 
 }

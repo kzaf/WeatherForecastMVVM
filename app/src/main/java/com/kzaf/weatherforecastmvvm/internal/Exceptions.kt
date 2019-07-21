@@ -3,4 +3,5 @@ package com.kzaf.weatherforecastmvvm.internal
 import java.io.IOException
 
 class NoConnectivityException: IOException()
-class LocationPremissionNotGrantedException: Exception()
+class LocationPermissionNotGrantedException: Exception()
+class DateNotFoundException: Exception()

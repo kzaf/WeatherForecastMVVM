@@ -6,13 +6,27 @@
 
     <fragment android:id="@+id/currentWeatherFragment"
               android:name="com.kzaf.weatherforecastmvvm.ui.weather.current.CurrentWeatherFragment"
-              android:label="current_weather_fragment" tools:layout="@layout/current_weather_fragment"/>
+              android:label="current_weather_fragment"
+              tools:layout="@layout/current_weather_fragment"/>
+
     <fragment android:id="@+id/futureListWeatherFragment"
               android:name="com.kzaf.weatherforecastMVVM.ui.weather.future.list.FutureListWeatherFragment"
-              android:label="future_list_weather_fragment" tools:layout="@layout/future_list_weather_fragment"/>
+              android:label="future_list_weather_fragment"
+              tools:layout="@layout/future_list_weather_fragment">
+        <action
+                android:id="@+id/actionDetail"
+                app:destination="@id/futureDetailWeatherFragment" />
+    </fragment>
+
     <fragment android:id="@+id/futureDetailWeatherFragment"
               android:name="com.kzaf.weatherforecastMVVM.ui.weather.future.detail.FutureDetailWeatherFragment"
-              android:label="future_detail_weather_fragment" tools:layout="@layout/future_detail_weather_fragment"/>
+              android:label="future_detail_weather_fragment"
+              tools:layout="@layout/future_detail_weather_fragment">
+        <argument
+                android:name="dateString"
+                app:argType="string" />
+    </fragment>
+
     <fragment android:id="@+id/settingsFragment"
               android:name="com.kzaf.weatherforecastmvvm.ui.settings.SettingsFragment"
               android:label="SettingsFragment"/>
